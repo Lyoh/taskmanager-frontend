@@ -1,17 +1,21 @@
-<table class="table table-hover">
-  <thead>
-    <th>ID</th>
-    <th>Título</th>
-    <th>Ação</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let task of tasks" >
-      <td>{{ task.id }}</td>
-      <td>{{ task.title }}</td>
-      <td>
-        <button class="btn btn-info">Detalhes</button>
-        <button class="btn btn-danger">excluir</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div>
+  <table class="table table-hover">
+    <thead>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Ação</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks" >
+        <td>{{ task.id }}</td>
+        <td>{{ task.title }}</td>
+        <td>
+          <button class="btn btn-info" data-toggle="modal" data-target="#taskDetails" (click)="onSelectedTask(task)" >Detalhes</button>
+          <button class="btn btn-danger">excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-task-detail [task]="selectedTask" ></app-task-detail>

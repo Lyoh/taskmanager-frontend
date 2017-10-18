@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Tasks } from './shared/tasks.model';
 
@@ -12,17 +12,21 @@ const TASKS: Array<Tasks> = [
 ];
 
 @Component({
-  selector: 'tasks',
+  selector: 'app-tasks',
   templateUrl: './tasks.component.html'
 })
 export class TasksComponent implements OnInit {
 
   tasks: any;
-  
+  selectedTask: Tasks;
+
   constructor() {
     this.tasks = TASKS;
    }
 
   ngOnInit() { }
 
+  onSelectedTask(task: Tasks) {
+    this.selectedTask = task;
+  }
 }
