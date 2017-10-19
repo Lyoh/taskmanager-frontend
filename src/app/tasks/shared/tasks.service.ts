@@ -13,10 +13,22 @@ const TASKS: Array<Tasks> = [
 @Injectable()
 export  class TasksService {
 
+  private tasks: Array<Tasks> = TASKS;
+
   /**
    * getTaks
  : Array<Tasks>  */
-  public getTaks(): Array<Tasks> {
-    return TASKS;
+  public getTaks(): Promise<Tasks[]> {
+    let promise = new Promise<Tasks[]>(
+      (resolve, reject) => {
+        if (this.tasks.length > 0) {
+          resolve(this.tasks);
+        } else {
+          reject('Nenhuma tarefa encontrada!')
+        }
+      }
+    );
+
+    return promise;
   }
 }
