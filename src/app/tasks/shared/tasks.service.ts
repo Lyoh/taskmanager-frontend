@@ -24,7 +24,7 @@ export  class TasksService {
         if (this.tasks.length > 0) {
           resolve(this.tasks);
         } else {
-          reject('Nenhuma tarefa encontrada!')
+          reject('Nenhuma tarefa encontrada!');
         }
       }
     );
