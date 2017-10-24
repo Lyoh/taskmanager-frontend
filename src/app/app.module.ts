@@ -5,24 +5,19 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent  } from './navbar/navbar.component';
-import { TasksComponent } from './tasks/tasks.component';
-import { TasksDetailComponent } from './tasks/tasks-detail/tasks-detail.component';
-import { TasksService } from './tasks/shared/tasks.service';
+
+import { TasksModule } from './tasks/tasks.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    TasksComponent,
-    TasksDetailComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
-  ],
-  providers: [
-    TasksService
+    HttpModule,
+    TasksModule
   ],
   bootstrap: [AppComponent]
 })

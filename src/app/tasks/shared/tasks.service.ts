@@ -7,7 +7,9 @@ const TASKS: Array<Tasks> = [
   { id: 2, title: 'Fazer Tarefa 002' },
   { id: 3, title: 'Fazer Tarefa 003' },
   { id: 4, title: 'Fazer Tarefa 004' },
-  { id: 5, title: 'Fazer Tarefa 005' }
+  { id: 5, title: 'Fazer Tarefa 005' },
+  { id: 6, title: 'Fazer Tarefa 006' },
+  { id: 7, title: 'Fazer Tarefa 007' }
 ];
 
 @Injectable()
