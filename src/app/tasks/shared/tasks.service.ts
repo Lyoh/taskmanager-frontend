@@ -33,4 +33,17 @@ export  class TasksService {
 
     return promise;
   }
+
+  /**
+   * getImportantTasks
+ : Promise<Tasks[]>  */
+  public getImportantTasks(): Promise<Tasks[]> {
+    let promise = new Promise<Tasks[]>(
+      (resolve) => {
+        resolve(this.tasks.slice(0, 3));
+      }
+    );
+
+    return promise;
+  }
 }

@@ -4,16 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent  } from './navbar/navbar.component';
 
+import { AppRoutingModule } from './app.routing.module';
 import { TasksModule } from './tasks/tasks.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpModule,
