@@ -1,0 +1,15 @@
+<h1>Tarefas Principais</h1>
+<div>
+  <table class="table table-hover">
+    <thead>
+      <th>ID</th>
+      <th>Título</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks" >
+        <td>{{ task.id }}</td>
+        <td>{{ task.title }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

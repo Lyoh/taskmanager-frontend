@@ -1,15 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Tasks } from './shared/tasks.model';
-
-
-const TASKS: Array<Tasks> = [
-  { id: 1, title: 'Tarefa 1' },
-  { id: 2, title: 'Tarefa 2' },
-  { id: 3, title: 'Tarefa 3' },
-  { id: 4, title: 'Tarefa 4' },
-  { id: 5, title: 'Tarefa 5' }
-];
+import { TasksService } from './shared/tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -17,14 +9,17 @@ const TASKS: Array<Tasks> = [
 })
 export class TasksComponent implements OnInit {
 
-  tasks: any;
+  tasks: Array<Tasks>;
   selectedTask: Tasks;
 
-  constructor() {
-    this.tasks = TASKS;
-   }
+  constructor(private tasksService: TasksService) {
+  }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.tasksService.getTaks()
+      .then((tasks) => this.tasks = tasks )
+      .catch((error_msg) => alert(error_msg));
+   }
 
   onSelectedTask(task: Tasks) {
     this.selectedTask = task;
