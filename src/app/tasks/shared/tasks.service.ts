@@ -20,7 +20,7 @@ export  class TasksService {
   /**
    * getTaks
  : Array<Tasks>  */
-  public getTaks(): Promise<Tasks[]> {
+  public getTasks(): Promise<Tasks[]> {
     let promise = new Promise<Tasks[]>(
       (resolve, reject) => {
         if (this.tasks.length > 0) {
@@ -38,12 +38,14 @@ export  class TasksService {
    * getImportantTasks
  : Promise<Tasks[]>  */
   public getImportantTasks(): Promise<Tasks[]> {
-    let promise = new Promise<Tasks[]>(
-      (resolve) => {
-        resolve(this.tasks.slice(0, 3));
-      }
-    );
+    return Promise.resolve(this.tasks.slice(0, 3));
+  }
 
-    return promise;
+  /**
+   * getTask
+  id: number : Promise<Tasks>  */
+  public getTask(id: number): Promise<Tasks> {
+    return this.getTasks()
+      .then(tasks => tasks.find(task => task.id === id));
   }
 }

@@ -16,7 +16,7 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tasksService.getTaks()
+    this.tasksService.getTasks()
       .then((tasks) => this.tasks = tasks )
       .catch((error_msg) => alert(error_msg));
    }
