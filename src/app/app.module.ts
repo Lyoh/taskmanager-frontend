@@ -23,8 +23,6 @@ import { TasksModule } from './tasks/tasks.module';
     HttpModule,
     TasksModule
   ],
-  bootstrap: [
-    AppComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

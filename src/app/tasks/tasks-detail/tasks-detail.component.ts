@@ -1,6 +1,9 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription, Operator } from 'rxjs/Rx';
+import { Location } from '@angular/common';
+import { Subscription } from 'rxjs/Rx';
+
+import 'rxjs/add/operator/switchMap';
 
 import { Tasks } from '../shared/tasks.model';
 import { TasksService } from '../shared/tasks.service';
@@ -11,14 +14,15 @@ import { TasksService } from '../shared/tasks.service';
 })
 export class TasksDetailComponent implements OnInit, OnDestroy {
 
-  @Input()task: Tasks;
+  task: Tasks;
 
   subs: Subscription;
   id: number;
 
   constructor(
     private tasksService: TasksService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -29,5 +33,12 @@ export class TasksDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
+  }
+
+  /**
+   * goBack
+   */
+  public goBack() {
+    this.location.back();
   }
 }
