@@ -1,3 +1,4 @@
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 import { Tasks } from './tasks.model';
@@ -17,9 +18,8 @@ export  class TasksService {
 
   private tasks: Array<Tasks> = TASKS;
 
-  /**
-   * getTaks
- : Array<Tasks>  */
+  public constructor(private http: Http) {}
+
   public getTasks(): Promise<Tasks[]> {
     let promise = new Promise<Tasks[]>(
       (resolve, reject) => {
@@ -34,16 +34,10 @@ export  class TasksService {
     return promise;
   }
 
-  /**
-   * getImportantTasks
- : Promise<Tasks[]>  */
   public getImportantTasks(): Promise<Tasks[]> {
     return Promise.resolve(this.tasks.slice(0, 3));
   }
 
-  /**
-   * getTask
-  id: number : Promise<Tasks>  */
   public getTask(id: number): Promise<Tasks> {
     return this.getTasks()
       .then(tasks => tasks.find(task => task.id === id));
