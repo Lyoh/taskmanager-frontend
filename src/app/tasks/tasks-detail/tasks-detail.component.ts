@@ -28,7 +28,10 @@ export class TasksDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subs = this.route.params
                   .switchMap((params: Params) => this.tasksService.getTask(+params['id']) )
-                  .subscribe(task => this.task = task);
+                  .subscribe(
+                    task => this.task = task,
+                    error => alert('Tarefa não encontrada')
+                  );
   }
 
   ngOnDestroy(): void {

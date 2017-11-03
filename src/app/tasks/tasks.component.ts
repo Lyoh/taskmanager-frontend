@@ -16,9 +16,12 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit() {
+    // console.log(this.tasksService.getTasks());
     this.tasksService.getTasks()
-      .then((tasks) => this.tasks = tasks )
-      .catch((error_msg) => alert(error_msg));
+      .subscribe(
+        tasks => this.tasks = tasks,
+        error => alert('Ocorreu um erro no servidor, tente novamente mais tarde')
+      );
    }
 
   onSelectedTask(task: Tasks) {

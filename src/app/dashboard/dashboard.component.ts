@@ -15,7 +15,11 @@ export class DashboardComponent implements OnInit {
   constructor(private tasksService: TasksService) { }
 
   ngOnInit() {
-    this.tasksService.getImportantTasks().then((tasks) => { this.tasks = tasks; });
+    this.tasksService.getImportantTasks()
+      .subscribe(
+        tasks =>  this.tasks = tasks,
+        error => alert('Ocorreu um erro no servidor, tente novamente mais tarde')
+      );
   }
 
 }
