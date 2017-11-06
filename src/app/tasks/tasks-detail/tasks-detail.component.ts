@@ -44,4 +44,13 @@ export class TasksDetailComponent implements OnInit, OnDestroy {
   public goBack() {
     this.location.back();
   }
+
+  public updateTask() {
+    this.tasksService.updateTask(this.task)
+      .subscribe(
+        () => alert('Tarefa atualizada com sucesso!!'),
+        () => alert('Erro no servidor, tente novamente mais tarde!')
+      );
+  }
+
 }
