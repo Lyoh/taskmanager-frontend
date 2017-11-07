@@ -27,7 +27,7 @@ export class TasksDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subs = this.route.params
-                  .switchMap((params: Params) => this.tasksService.getTask(+params['id']) )
+                  .switchMap((params: Params) => this.tasksService.getById(+params['id']) )
                   .subscribe(
                     task => this.task = task,
                     error => alert('Tarefa não encontrada')
@@ -46,7 +46,7 @@ export class TasksDetailComponent implements OnInit, OnDestroy {
   }
 
   public updateTask() {
-    this.tasksService.updateTask(this.task)
+    this.tasksService.update(this.task)
       .subscribe(
         () => alert('Tarefa atualizada com sucesso!!'),
         () => alert('Erro no servidor, tente novamente mais tarde!')

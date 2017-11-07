@@ -17,7 +17,7 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tasksService.getTasks()
+    this.tasksService.getAll()
       .subscribe(
         tasks => this.tasks = tasks,
         error => alert('Ocorreu um erro no servidor, tente novamente mais tarde')
@@ -43,7 +43,7 @@ export class TasksComponent implements OnInit {
 
    deleteTask(task: Tasks) {
      if (confirm(`Deseja realmente excluir a tarefa "${task.title}"`)) {
-       this.tasksService.deleteTask(task.id)
+       this.tasksService.delete(task.id)
         .subscribe(
           () => this.tasks = this.tasks.filter(t => t !== task),
           () => alert('Ocorreu um erro no servidor, tente novamente mais tarde')
