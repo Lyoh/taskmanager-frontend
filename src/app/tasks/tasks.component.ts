@@ -10,13 +10,13 @@ import { TasksService } from './shared/tasks.service';
 export class TasksComponent implements OnInit {
 
   tasks: Array<Tasks>;
-  selectedTask: Tasks;
+  newTask: Tasks;
 
   constructor(private tasksService: TasksService) {
+    this.newTask = new Tasks(null, '');
   }
 
   ngOnInit() {
-    // console.log(this.tasksService.getTasks());
     this.tasksService.getTasks()
       .subscribe(
         tasks => this.tasks = tasks,
@@ -24,7 +24,20 @@ export class TasksComponent implements OnInit {
       );
    }
 
-  onSelectedTask(task: Tasks) {
-    this.selectedTask = task;
-  }
+   createTask() {
+    this.newTask.title = this.newTask.title.trim();
+
+    if (!this.newTask.title) {
+      alert('A tafera deve ter um título');
+    } else {
+      this.tasksService.createTask(this.newTask)
+        .subscribe(
+          (task: Tasks) => {
+            this.tasks.push(task);
+            this.newTask = new Tasks(null, '');
+          },
+          () => alert('Ocorreu um erro no servidor, tente novamente mais tarde')
+        );
+    }
+   }
 }

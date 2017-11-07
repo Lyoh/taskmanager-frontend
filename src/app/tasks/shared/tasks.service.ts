@@ -43,7 +43,7 @@ export  class TasksService {
 
     return this.http.post(this.taskUrl, body, { headers: headers })
       .catch(this.handleErrors)
-      .map((response: Response) => response.json().data as Tasks);
+      .map((response: Response) => response.json() as Tasks);
   }
 
   public updateTask(task: Tasks): Observable<Tasks> {
