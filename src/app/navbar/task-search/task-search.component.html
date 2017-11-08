@@ -1,6 +1,8 @@
 <div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search">
+    <input #searchInput type="text" class="form-control" placeholder="Pesquisar" (keyup)="search(searchInput.value)" >
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <div class="list-group my-search">
+    <a href="" class="list-group-item"></a>
+  </div>
 </div>
