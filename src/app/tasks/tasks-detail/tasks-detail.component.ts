@@ -3,8 +3,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs/Rx';
 
-import 'rxjs/add/operator/switchMap';
-
 import { Tasks } from '../shared/tasks.model';
 import { TasksService } from '../shared/tasks.service';
 
