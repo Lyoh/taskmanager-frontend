@@ -13,6 +13,10 @@ import { TasksService } from '../shared/tasks.service';
 export class TasksDetailComponent implements OnInit, OnDestroy {
 
   task: Tasks;
+  doneOptions: Array<any> = [
+    { value: false, text: 'Pendente' },
+    { value: true, text: 'Concluída' }
+  ];
 
   subs: Subscription;
   id: number;
