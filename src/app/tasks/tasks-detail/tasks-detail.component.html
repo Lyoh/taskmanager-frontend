@@ -3,9 +3,11 @@
 <form #taskForm="ngForm" *ngIf="task">
 
   <div class="row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6 has-feedback" [class.has-error]="title.invalid && title.touched" [class.has-success]="title.valid" >
       <label for="title" class="control-label">Título</label>  
-      <input [(ngModel)]="task.title" id="title" name="title" type="text" class="form-control" placeholder="Título">
+      <input #title="ngModel" [(ngModel)]="task.title" id="title" name="title" type="text" class="form-control" placeholder="Título" required>
+      <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="title.valid" [class.glyphicon-remove]="title.invalid && title.touched" ></span>
+      <div *ngIf="title.invalid && title.touched" class="text-danger">O título é obrigatório</div>
     </div>
 
     <div class="form-group col-md-3">
@@ -27,10 +29,9 @@
       <textarea [(ngModel)]="task.description" name="description" id="description"rows="4" class="form-control"></textarea>
     </div>
   </div>
-
   
   <button class="btn btn-info" (click)="goBack()">Voltar</button>
-  <button type="submit" class="btn btn-success" (click)="updateTask()" >Atualizar</button>  
+  <button [disabled]="taskForm.invalid" type="submit" class="btn btn-success" (click)="updateTask()" >Atualizar</button>  
 
   <hr>
 
