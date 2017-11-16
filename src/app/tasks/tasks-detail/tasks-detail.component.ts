@@ -55,4 +55,8 @@ export class TasksDetailComponent implements OnInit, OnDestroy {
       );
   }
 
+  public showFieldErrors(field): boolean {
+    return field.invalid && (field.touched || field.dirty)
+  }
+
 }
