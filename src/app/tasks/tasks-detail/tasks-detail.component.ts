@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs/Rx';
@@ -10,7 +10,7 @@ import { TasksService } from '../shared/tasks.service';
   selector: 'app-task-detail',
   templateUrl: './tasks-detail.component.html'
 })
-export class TasksDetailComponent implements OnInit, OnDestroy {
+export class TasksDetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
   task: Tasks;
   doneOptions: Array<any> = [
@@ -28,16 +28,25 @@ export class TasksDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.task = new Tasks(null, null);
+
     this.subs = this.route.params
-                  .switchMap((params: Params) => this.tasksService.getById(+params['id']) )
-                  .subscribe(
-                    task => this.task = task,
-                    error => alert('Tarefa não encontrada')
-                  );
+      .switchMap((params: Params) => this.tasksService.getById(+params['id']) )
+      .subscribe(
+        task => this.task = task,
+        error => alert('Tarefa não encontrada')
+      );
   }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    $('#deadline').datetimepicker({
+      'sideBySide': true,
+      'locale': 'pt-br'
+    }).on('db.change', () => this.task.deadline = $('#deadline').val());
   }
 
   /**

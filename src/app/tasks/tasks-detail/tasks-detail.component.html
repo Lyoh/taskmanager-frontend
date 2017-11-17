@@ -1,11 +1,11 @@
-<h1 class="page-header">Detalhes da tarefa Nº {{ task?.id }}</h1>
+<h1 class="page-header">Detalhes da tarefa Nº {{ task.id }}</h1>
 
-<form #taskForm="ngForm" *ngIf="task">
+<form #taskForm="ngForm" (ngSubmit)="updateTask()" >
 
   <div class="row">
     <div class="form-group col-md-6 has-feedback" [class.has-error]="showFieldErrors(title)" [class.has-success]="title.valid" >
       <label for="title" class="control-label">Título</label>  
-      <input #title="ngModel" [(ngModel)]="task.title" id="title" name="title" type="text" class="form-control" placeholder="Título" required minlength="3" maxlength="15">
+      <input #title="ngModel" [(ngModel)]="task.title" id="title" name="title" type="text" class="form-control" placeholder="Título" required minlength="3" maxlength="255">
       <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="title.valid" [class.glyphicon-remove]="showFieldErrors(title)" style="margin-right:20px" ></span>
       <div *ngIf="showFieldErrors(title)" class="text-danger">
         <div *ngIf="title.errors.required" >O título é obrigatório</div>
@@ -20,7 +20,7 @@
     </div> 
 
     <div class="form-group col-md-3">
-      <label for="done" class="control-label">Prazo de Entrega</label>  
+      <label for="done" class="control-label">Situação</label>  
       <select [(ngModel)]="task.done" id="done" name="done" class="form-control">
         <option *ngFor="let option of doneOptions" [value]="option.value">{{ option.text }}</option>
       </select>
@@ -34,11 +34,12 @@
     </div>
   </div>
   
+  <button [disabled]="taskForm.invalid" type="submit" class="btn btn-success" >Atualizar</button>  
   <button class="btn btn-info" (click)="goBack()">Voltar</button>
-  <button [disabled]="taskForm.invalid" type="submit" class="btn btn-success" (click)="updateTask()" >Atualizar</button>  
-
+  
   <hr>
 
   <pre>{{ title.errors | json }}</pre>
+  <pre>{{ task | json }}</pre>
 
 </form>
