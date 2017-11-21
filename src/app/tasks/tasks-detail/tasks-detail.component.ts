@@ -42,7 +42,7 @@ export class TasksDetailComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subs = this.route.params
       .switchMap((params: Params) => this.tasksService.getById(+params['id']) )
       .subscribe(
-        task => this.task = task,
+        task => this.setTask(task),
         error => alert('Tarefa não encontrada')
       );
   }
@@ -55,7 +55,8 @@ export class TasksDetailComponent implements OnInit, OnDestroy, AfterViewInit {
     $('#deadline').datetimepicker({
       'sideBySide': true,
       'locale': 'pt-br'
-    }).on('db.change', () => this.task.deadline = $('#deadline').val());
+    }).on('db.change', () => this.reactiveTaskForm.patchValue( { deadline: $('#deadline').val() } ));
+  // }).on('db.change', () => this.reactiveTaskForm.get('deadline').setValue($('#deadline').val()));
   }
 
   /**
@@ -75,6 +76,10 @@ export class TasksDetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public showFieldErrors(field): boolean {
     return field.invalid && (field.touched || field.dirty)
+  }
+
+  private setTask(task: Tasks) {
+    this.reactiveTaskForm.patchValue(task);
   }
 
 }
