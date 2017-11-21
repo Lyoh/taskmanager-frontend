@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 
@@ -45,6 +45,7 @@ import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
     FormsModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryTaskDataService),
+    ReactiveFormsModule,
     TasksModule
   ],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs/Rx';
@@ -11,6 +12,7 @@ import { TasksService } from '../shared/tasks.service';
   templateUrl: './tasks-detail.component.html'
 })
 export class TasksDetailComponent implements OnInit, OnDestroy, AfterViewInit {
+  public reactiveTaskForm: FormGroup;
 
   task: Tasks;
   doneOptions: Array<any> = [
@@ -25,7 +27,14 @@ export class TasksDetailComponent implements OnInit, OnDestroy, AfterViewInit {
     private tasksService: TasksService,
     private route: ActivatedRoute,
     private location: Location
-  ) { }
+  ) {
+    this.reactiveTaskForm = new FormGroup({
+      title: new FormControl(null),
+      deadline: new FormControl(null),
+      done: new FormControl(null),
+      description: new FormControl(null)
+    });
+   }
 
   ngOnInit(): void {
     this.task = new Tasks(null, null);
