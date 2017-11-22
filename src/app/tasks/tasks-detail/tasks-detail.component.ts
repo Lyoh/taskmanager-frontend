@@ -56,8 +56,8 @@ export class TasksDetailComponent implements OnInit, OnDestroy, AfterViewInit {
     $('#deadline').datetimepicker({
       'sideBySide': true,
       'locale': 'pt-br'
-    }).on('db.change', () => this.reactiveTaskForm.patchValue( { deadline: $('#deadline').val() } ));
-  // }).on('db.change', () => this.reactiveTaskForm.get('deadline').setValue($('#deadline').val()));
+    }).on('db.change', () => this.reactiveTaskForm.get('deadline').setValue($('#deadline').val()));
+  // }).on('db.change', () => this.reactiveTaskForm.patchValue( { deadline: $('#deadline').val() } ));
   }
 
   /**
