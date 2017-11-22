@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent  } from './navbar/navbar.component';
+import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { TaskSearchComponent } from './navbar/task-search/task-search.component';
 
 // Modules imports
@@ -37,6 +38,7 @@ import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
     AppComponent,
     DashboardComponent,
     NavbarComponent,
+    SignUpFormComponent,
     TaskSearchComponent
   ],
   imports: [
