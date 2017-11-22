@@ -1,32 +1,32 @@
 <h1 class="page-header">Detalhes da tarefa Nº {{ task.id }}</h1>
 
-<form [formGroup]="reactiveTaskForm" >
+<form [formGroup]="reactiveTaskForm" (ngSubmit)="updateTask()">
   <div class="row">
-    <div class="form-group col-md-6 has-feedback" [class.has-error]="showFieldErrors(reactiveTaskForm.get('title'))" [class.has-success]="reactiveTaskForm.get('title').valid" >
+    <div class="form-group col-md-6 has-feedback" [ngClass]="getFieldClass('title')" >
       <label for="title" class="control-label">Título</label>
       <input type="text" id="title" formControlName="title" class="form-control">
-      <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="reactiveTaskForm.get('title').valid" [class.glyphicon-remove]="showFieldErrors(reactiveTaskForm.get('title'))" style="margin-right:20px" ></span>
-      <div *ngIf="showFieldErrors(reactiveTaskForm.get('title'))" class="text-danger">
-        <div *ngIf="reactiveTaskForm.get('title').errors.required" >O título é obrigatório</div>
-        <div *ngIf="reactiveTaskForm.get('title').errors.minlength" >O título deve ter no mínimo 3 caracteres</div>
-        <div *ngIf="reactiveTaskForm.get('title').errors.maxlength" >O título deve ter no maxímo 15 caracteres</div>
+      <span  [ngClass]="getIconClass('title')" ></span>
+      <div *ngIf="showFieldErrors('title')" class="text-danger">
+        <div *ngIf="getField('title').errors.required" >O título é obrigatório</div>
+        <div *ngIf="getField('title').errors.minlength" >O título deve ter no mínimo 3 caracteres</div>
+        <div *ngIf="getField('title').errors.maxlength" >O título deve ter no maxímo 15 caracteres</div>
       </div>
     </div>
 
-    <div class="form-group col-md-3 has-feedback" [class.has-error]="showFieldErrors(reactiveTaskForm.get('deadline'))" [class.has-success]="reactiveTaskForm.get('deadline').valid" >
+    <div class="form-group col-md-3 has-feedback" [ngClass]="getFieldClass('deadline')">
       <label for="deadline" class="control-label">Prazo de Entrega</label>
       <input type="text" formControlName="deadline" id="deadline" class="form-control">
-      <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="reactiveTaskForm.get('deadline').valid" [class.glyphicon-remove]="showFieldErrors(reactiveTaskForm.get('deadline'))" style="margin-right:20px" ></span>
-      <div *ngIf="showFieldErrors(reactiveTaskForm.get('deadline'))" class="text-danger">O prazo é obrigatório</div>
+      <span [ngClass]="getIconClass('deadline')" ></span>
+      <div *ngIf="showFieldErrors('deadline')" class="text-danger">O prazo é obrigatório</div>
     </div>
 
-    <div class="form-group col-md-3 has-feedback" [class.has-error]="showFieldErrors(reactiveTaskForm.get('done'))" [class.has-success]="reactiveTaskForm.get('done').valid" >
+    <div class="form-group col-md-3 has-feedback" [ngClass]="getFieldClass('done')" >
       <label for="done" class="control-label">Situação</label>
       <select formControlName="done" id="done" class="form-control">
         <option *ngFor="let option of doneOptions" [value]="option.value">{{ option.text }}</option>
       </select>
-      <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="reactiveTaskForm.get('done').valid" [class.glyphicon-remove]="showFieldErrors(reactiveTaskForm.get('done'))" style="margin-right:20px" ></span>
-      <div *ngIf="showFieldErrors(reactiveTaskForm.get('done'))" class="text-danger">O prazo é obrigatório</div>
+      <span [ngClass]="getIconClass('done')" ></span>
+      <div *ngIf="showFieldErrors('done')" class="text-danger">O prazo é obrigatório</div>
     </div>
   </div>
   <div class="row">
@@ -35,49 +35,7 @@
       <textarea formControlName="description" id="description" rows="4" class="form-control"></textarea>
     </div>    
   </div>
+
+  <button [disabled]="reactiveTaskForm.invalid" type="submit" class="btn btn-success" >Atualizar</button>  
+  <button class="btn btn-info" type="button" (click)="goBack()">Voltar</button>
 </form>
-
-<!-- 
-<form #taskForm="ngForm" (ngSubmit)="updateTask()" >
-
-  <div class="row">
-    <div class="form-group col-md-6 has-feedback" [class.has-error]="showFieldErrors(title)" [class.has-success]="title.valid" >
-      <label for="title" class="control-label">Título</label>  
-      <input #title="ngModel" [(ngModel)]="task.title" id="title" name="title" type="text" class="form-control" placeholder="Título" required minlength="3" maxlength="255">
-      <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="title.valid" [class.glyphicon-remove]="showFieldErrors(title)" style="margin-right:20px" ></span>
-      <div *ngIf="showFieldErrors(title)" class="text-danger">
-        <div *ngIf="title.errors.required" >O título é obrigatório</div>
-        <div *ngIf="title.errors.minlength" >O título deve ter no mínimo 3 caracteres</div>
-        <div *ngIf="title.errors.maxlength" >O título deve ter no maxímo 15 caracteres</div>
-      </div>
-    </div>
-
-    <div class="form-group col-md-3">
-      <label for="deadline" class="control-label">Prazo de Entrega</label>  
-      <input [(ngModel)]="task.deadline" id="deadline" name="deadline" type="text" class="form-control">
-    </div> 
-
-    <div class="form-group col-md-3">
-      <label for="done" class="control-label">Situação</label>  
-      <select [(ngModel)]="task.done" id="done" name="done" class="form-control">
-        <option *ngFor="let option of doneOptions" [value]="option.value">{{ option.text }}</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group col-md-12">
-      <label for="description" class="control-label"></label>
-      <textarea [(ngModel)]="task.description" name="description" id="description"rows="4" class="form-control"></textarea>
-    </div>
-  </div>
-  
-  <button [disabled]="taskForm.invalid" type="submit" class="btn btn-success" >Atualizar</button>  
-  <button class="btn btn-info" (click)="goBack()">Voltar</button>
-  
-  <hr>
-
-  <pre>{{ title.errors | json }}</pre>
-  <pre>{{ task | json }}</pre>
-
-</form> -->
