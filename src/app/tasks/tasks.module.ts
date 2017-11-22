@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '../app.routing.module';
 import { TasksComponent } from './tasks.component';
@@ -9,9 +9,10 @@ import { TasksService } from './shared/tasks.service';
 
 @NgModule({
   imports: [
+    AppRoutingModule,
     CommonModule,
     FormsModule,
-    AppRoutingModule
+    ReactiveFormsModule
   ],
   declarations: [
     TasksComponent,

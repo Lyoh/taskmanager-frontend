@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs/Rx';
@@ -26,13 +26,14 @@ export class TasksDetailComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private tasksService: TasksService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private formBuilder: FormBuilder
   ) {
-    this.reactiveTaskForm = new FormGroup({
-      title: new FormControl(null),
-      deadline: new FormControl(null),
-      done: new FormControl(null),
-      description: new FormControl(null)
+    this.reactiveTaskForm = this.formBuilder.group({
+      title: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      deadline: [null, Validators.required],
+      done: [null, Validators.required],
+      description: [null]
     });
    }
 
