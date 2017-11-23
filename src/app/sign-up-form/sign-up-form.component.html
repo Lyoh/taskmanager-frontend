@@ -1,12 +1,19 @@
 <h1 class="page-header">Faça seu cadastro</h1>
 
 <div class="jumbotron">
-  <form [formGroup]="userForm" (ngSubmit)="signUpUser" class="form-horizontal">
+  <form [formGroup]="form" (ngSubmit)="signUpUser" class="form-horizontal">
     
-    <div class="form-group">
+    <div class="form-group has-feedback" [ngClass]="formUtils.getFieldClass('name')">
       <label for="name" class="col-sm-4 control-label">Nome</label>
       <div class="col-sm-4">
         <input formControlNalme="name" type="text"  class="form-control" id="name">
+        <span  [ngClass]="formUtils.getIconClass('name')" ></span>
+        
+        <div *ngIf="formUtils.showFieldErrors('name')" class="text-danger">
+          <div *ngIf="form('name').errors.required" >O nome é obrigatório</div>
+          <div *ngIf="form('name').errors.minlength" >O nome deve ter no mínimo 5 caracteres</div>
+          <div *ngIf="form('name').errors.maxlength" >O nome deve ter no maxímo 100 caracteres</div>
+        </div>
       </div>
     </div>
     
@@ -36,5 +43,12 @@
         <button formControlNalme="" type="submit" class="btn btn-primary">Criar Conta</button>
       </div>
     </div>
+
+    <hr>
+
+    <pre> {{ form.get('name').errors | json }}  </pre>
+    <pre> {{ form.values | json }}   </pre>
+    
+   
   </form>
 </div>
