@@ -6,49 +6,61 @@
     <div class="form-group has-feedback" [ngClass]="formUtils.getFieldClass('name')">
       <label for="name" class="col-sm-4 control-label">Nome</label>
       <div class="col-sm-4">
-        <input formControlNalme="name" type="text"  class="form-control" id="name">
+        <input formControlName="name" type="text"  class="form-control" id="name">
         <span  [ngClass]="formUtils.getIconClass('name')" ></span>
         
         <div *ngIf="formUtils.showFieldErrors('name')" class="text-danger">
-          <div *ngIf="form('name').errors.required" >O nome é obrigatório</div>
-          <div *ngIf="form('name').errors.minlength" >O nome deve ter no mínimo 5 caracteres</div>
-          <div *ngIf="form('name').errors.maxlength" >O nome deve ter no maxímo 100 caracteres</div>
+          <div *ngIf="form.get('name').errors.required" >O nome é obrigatório</div>
+          <div *ngIf="form.get('name').errors.minlength" >O nome deve ter no mínimo 5 caracteres</div>
+          <div *ngIf="form.get('name').errors.maxlength" >O nome deve ter no maxímo 100 caracteres</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group has-feedback" [ngClass]="formUtils.getFieldClass('email')">
+      <label for="email" class="col-sm-4 control-label">Email</label>
+      <div class="col-sm-4">
+        <input formControlName="email" type="email" class="form-control" id="email">
+        <span  [ngClass]="formUtils.getIconClass('email')" ></span>
+        
+        <div *ngIf="formUtils.showFieldErrors('email')" class="text-danger">
+          <div *ngIf="form.get('email').errors.required" >O email é obrigatório</div>
+          <div *ngIf="form.get('email').errors.email" >O email digitado é inválido</div>
+        </div>
+      </div>
+    </div>
+      
+    <div class="form-group has-feedback" [ngClass]="formUtils.getFieldClass('password')">
+      <label for="password" class="col-sm-4 control-label">Senha</label>
+      <div class="col-sm-4">
+        <input formControlName="password" type="password" class="form-control" id="password">
+        <span  [ngClass]="formUtils.getIconClass('password')" ></span>
+        
+        <div *ngIf="formUtils.showFieldErrors('password')" class="text-danger">
+          <div *ngIf="form.get('password').errors.required" >A senha é obrigatória</div>
+          <div *ngIf="form.get('password').errors.minlength" >A Senha deve ter no mínimo 8 caracteres</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group has-feedback" [ngClass]="formUtils.getFieldClass('passwordConfirmation')">
+      <label for="passwordConfirmation" class="col-sm-4 control-label">Confirmação de Senha</label>
+      <div class="col-sm-4">
+        <input formControlName="passwordConfirmation" type="password" class="form-control" id="passwordConfirmation">
+        <span  [ngClass]="formUtils.getIconClass('passwordConfirmation')" ></span>
+        
+        <div *ngIf="formUtils.showFieldErrors('passwordConfirmation')" class="text-danger">
+          <div *ngIf="form.get('passwordConfirmation').errors.required" >A confirmação de senha é obrigatória</div>
+          <div *ngIf="form.get('passwordConfirmation').errors.mismatch" >A confirmação de senha deve ser igual a senha informada.</div>
         </div>
       </div>
     </div>
     
     <div class="form-group">
-      <label for="email" class="col-sm-4 control-label">Email</label>
-      <div class="col-sm-4">
-        <input formControlNalme="email" type="email" class="form-control" id="email">
-      </div>
-    </div>
-      
-    <div class="form-group">
-      <label for="password" class="col-sm-4 control-label">Senha</label>
-      <div class="col-sm-4">
-        <input formControlNalme="password" type="password" class="form-control" id="password">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="passwordConfirmation" class="col-sm-4 control-label">Confirmação de Senha</label>
-      <div class="col-sm-4">
-        <input formControlNalme="passwordConfirmation" type="password" class="form-control" id="passwordConfirmation">
-      </div>
-    </div>
-    
-    <div class="form-group">
       <div class="col-sm-offset-4 col-sm-8">
-        <button formControlNalme="" type="submit" class="btn btn-primary">Criar Conta</button>
+        <button type="submit" class="btn btn-primary">Criar Conta</button>
       </div>
     </div>
-
-    <hr>
-
-    <pre> {{ form.get('name').errors | json }}  </pre>
-    <pre> {{ form.values | json }}   </pre>
-    
    
   </form>
 </div>
