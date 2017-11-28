@@ -17,9 +17,16 @@
         <li routerLinkActive="active"><a routerLink="/dashboard" >Dashboard<span class="sr-only">(current)</span></a></li>
         <li routerLinkActive="active"><a routerLink="/tasks" >Tarefas</a></li>        
       </ul>
-      <div class="navbar-form navbar-right">
+      <div class="navbar-form navbar-left">
         <app-task-search></app-task-search>
-      </div>      
+      </div>
+
+      <div class="navbar-form navbar-right">
+        <button class="btn btn-danger" (click)="signOutUser()" >
+          <span class="glyphicon glyphicon-log-out"></span>
+          Sair
+        </button>
+      </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
