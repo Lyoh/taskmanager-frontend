@@ -13,6 +13,8 @@ import { User } from './../shared/user.form';
 export class SignUpFormComponent {
   public form: FormGroup;
   public formUtils: FormUtils;
+  public submitted: boolean;
+  public formErrors: Array<string>;
 
   constructor(
     private authService: AuthService,
@@ -21,14 +23,26 @@ export class SignUpFormComponent {
   ) {
     this.setupForm();
     this.formUtils = new FormUtils(this.form);
+    this.submitted = false;
+    this.formErrors = null;
   }
 
   public signUpUser() {
+    // tslint:disable:curly
     this.authService.signUp(this.form.value as User)
       .subscribe(
         () => {
           alert('Sua conta foi criada com sucesso!');
           this.router.navigate(['/dashboard']);
+          this.formErrors = null;
+        },
+        (errors) => {
+          this.submitted = false;
+
+          if (errors.status === 422)
+            this.formErrors = JSON.parse(errors._body).errors.full_messages;
+          else
+            this.formErrors = ['Não foi possível processar a sua solicitação. Por favor, tente mais tarde.'];
         }
       );
   }
