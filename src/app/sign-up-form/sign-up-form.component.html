@@ -1,7 +1,7 @@
 <h1 class="page-header">Faça seu cadastro</h1>
 
 <div class="jumbotron">
-  <form [formGroup]="form" (ngSubmit)="signUpUser" class="form-horizontal">
+  <form [formGroup]="form" (ngSubmit)="signUpUser()" class="form-horizontal">
     
     <div class="form-group has-feedback" [ngClass]="formUtils.getFieldClass('name')">
       <label for="name" class="col-sm-4 control-label">Nome</label>

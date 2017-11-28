@@ -14,9 +14,8 @@ export class AuthService {
   ) { }
 
   public signUp(user: User): Observable<Response> {
-    // call angular2-token signup method here!
-    // Returns an Observable<Response>
-    return null;
+    return this.tokenService.registerAccount(user as any)
+      .catch(this.handleErrors);
   }
 
   public signIn(uid: string, password: string): Observable<Response> {
