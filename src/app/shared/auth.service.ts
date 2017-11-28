@@ -19,9 +19,14 @@ export class AuthService {
   }
 
   public signIn(uid: string, password: string): Observable<Response> {
-    // call angular2-token signin method here!
-    // Returns an Observable<Response>
-    return null;
+    // tslint:disable-next-line:prefer-const
+    let signInData = {
+      email: uid,
+      password: password
+    };
+
+    return this.tokenService.signIn(signInData)
+      .catch(this.handleErrors);
   }
 
 
