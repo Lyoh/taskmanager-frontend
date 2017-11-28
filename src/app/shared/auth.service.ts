@@ -32,10 +32,8 @@ export class AuthService {
     return null;
   }
 
-  public isSignedIn(): boolean {
-    // call angular2-token userSignedIn method here!
-    // Returns an boolean
-    return null;
+  public userSignedIn(): boolean {
+    return this.tokenService.userSignedIn();
   }
 
   private handleErrors(errors: Response): Observable<Response> {

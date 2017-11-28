@@ -15,13 +15,12 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { TaskSearchComponent } from './navbar/task-search/task-search.component';
 import { AuthService } from './shared/auth.service';
 
+// Guards imports
+import { AuthGuard } from './guards/auth.guards';
+
 // Modules imports
 import { AppRoutingModule } from './app.routing.module';
 import { TasksModule } from './tasks/tasks.module';
-
-// In memory web API
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryTaskDataService } from './in-memory-task-data.service';
 
 // rxjs operators
 import 'rxjs/add/operator/catch';
@@ -52,12 +51,12 @@ import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryTaskDataService),
     ReactiveFormsModule,
     TasksModule
   ],
   providers: [
     Angular2TokenService,
+    AuthGuard,
     AuthService
   ],
   bootstrap: [AppComponent]
