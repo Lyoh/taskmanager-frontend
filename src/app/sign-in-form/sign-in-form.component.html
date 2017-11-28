@@ -1,0 +1,38 @@
+<h1 class="page-header">Log in</h1>
+
+<div class="jumbotron">
+  <form [formGroup]="form" (ngSubmit)="signInUser" class="form-horizontal">
+        
+    <div class="form-group has-feedback" [ngClass]="formUtils.getFieldClass('email')">
+      <label for="email" class="col-sm-4 control-label">Email</label>
+      <div class="col-sm-4">
+        <input formControlName="email" type="email" class="form-control" id="email">
+        <span  [ngClass]="formUtils.getIconClass('email')" ></span>
+        
+        <div *ngIf="formUtils.showFieldErrors('email')" class="text-danger">
+          <div *ngIf="form.get('email').errors.required" >O email é obrigatório</div>
+          <div *ngIf="form.get('email').errors.email" >O email digitado é inválido</div>
+        </div>
+      </div>
+    </div>
+      
+    <div class="form-group has-feedback" [ngClass]="formUtils.getFieldClass('password')">
+      <label for="password" class="col-sm-4 control-label">Senha</label>
+      <div class="col-sm-4">
+        <input formControlName="password" type="password" class="form-control" id="password">
+        <span  [ngClass]="formUtils.getIconClass('password')" ></span>
+        
+        <div *ngIf="formUtils.showFieldErrors('password')" class="text-danger">
+          <div *ngIf="form.get('password').errors.required" >A senha é obrigatória</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-8">
+        <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Log in</button>
+      </div>
+    </div>
+   
+  </form>
+</div>

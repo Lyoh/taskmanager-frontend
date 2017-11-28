@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { FormUtils } from './../shared/form.utils';
 
 @Component({
-  selector: 'app-sign-up-form',
+  selector: 'app-sign-up',
   templateUrl: './sign-up-form.component.html'
 })
 export class SignUpFormComponent {
