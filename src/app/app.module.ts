@@ -13,6 +13,7 @@ import { NavbarComponent  } from './navbar/navbar.component';
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { TaskSearchComponent } from './navbar/task-search/task-search.component';
+import { AuthService } from './shared/auth.service';
 
 // Modules imports
 import { AppRoutingModule } from './app.routing.module';
@@ -56,7 +57,8 @@ import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
     TasksModule
   ],
   providers: [
-    Angular2TokenService
+    Angular2TokenService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
