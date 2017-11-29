@@ -11,7 +11,7 @@ export class NotAuthenticatedGuard implements CanActivate {
   ) { }
 
   public canActivate(): boolean {
-    if (this.authService.userSignedIn) {
+    if (this.authService.userSignedIn()) {
       this.router.navigate(['/dashboard']);
       return false;
     } else {

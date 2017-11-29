@@ -13,7 +13,7 @@
 
   </div>
 
-  <form [formGroup]="form" (ngSubmit)="signInUser" class="form-horizontal">
+  <form [formGroup]="form" (ngSubmit)="signInUser()" class="form-horizontal">
         
     <div class="form-group has-feedback" [ngClass]="formUtils.getFieldClass('email')">
       <label for="email" class="col-sm-4 control-label">Email</label>
@@ -46,5 +46,11 @@
       </div>
     </div>
    
+    <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-8">
+        Se você não possui uma conta, 
+        <a routerLink="/sign-up">clique aqui</a>
+      </div>
+    </div>
   </form>
 </div>
