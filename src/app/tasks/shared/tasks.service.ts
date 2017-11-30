@@ -94,7 +94,7 @@ export  class TasksService {
       data.attributes.title,
       data.attributes.description,
       data.attributes.done,
-      data.attributes.deadline
+      data.attributes['deadline_formatted']
     );
 
     return task;
